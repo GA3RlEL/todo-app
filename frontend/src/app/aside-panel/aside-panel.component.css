@@ -1,0 +1,112 @@
+/* -------------GENERAL ------------------ */
+hr {
+  width: 60%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 2px solid #274c77;
+  border-radius: 2rem;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* --------------------------------------*/
+/* --------------USER------------------ */
+.user {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 9999999px;
+}
+
+.user p {
+  font-size: 1.25rem;
+}
+
+.user h3 {
+  font-size: 2rem;
+}
+
+/* -------------------------------- */
+/* --------------TODO-OPTIONS------------------ */
+.todo-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.settings {
+}
+
+.today {
+  margin-top: 2rem;
+  grid-template-rows: auto auto;
+}
+
+/* .today-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  grid-column: ;
+} */
+
+.today-filters {
+  align-self: self-end;
+  grid-column: 2;
+}
+
+.today-filters ul {
+  list-style-type: none;
+  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.today-filters ul li {
+  display: flex;
+  gap: 2rem;
+}
+
+.today-filters p {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.today-filters .dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: #274c77;
+  border-radius: 999999px;
+}
+
+img {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* -------------------------------- */
