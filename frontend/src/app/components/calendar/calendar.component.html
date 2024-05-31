@@ -1,0 +1,40 @@
+<div class="calendar-icon">
+  <button type="button" (click)="onShowCalendar()">
+    <img src="/assets/images/calendar-clear-outline.svg" alt="clock icon" />
+  </button>
+
+  <div class="calendar" [class.visible]="isVisible">
+    <div class="top-bar">
+      <button type="button" (click)="onPreviousMonth()">
+        <img src="/assets/images/chevron-back.svg" alt="" />
+      </button>
+      @if(selectedYear === year){
+      <span>{{ selectedDate | date : "MMMM" }}</span>
+      }@else {
+      <span>{{ selectedDate | date : "MMMM" }} {{ selectedYear }}</span>
+      }
+
+      <button type="button" (click)="onNextMonth()">
+        <img src="/assets/images/chevron-forward.svg" alt="" />
+      </button>
+    </div>
+    <div class="days-container">
+      <div class="daysName">
+        @for (day of daysName; track day) {
+        {{ day }}
+        }
+      </div>
+      <div class="days">
+        @for (day of daysToPrint; track day) {
+        <button
+          (click)="onSelectDate(day.dayNumber, day.month, day.year)"
+          [class.old]="day.isPrevious"
+          type="button"
+        >
+          {{ day.dayNumber }}
+        </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
