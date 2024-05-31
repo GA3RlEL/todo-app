@@ -21,6 +21,7 @@ export class CalendarComponent {
   daysToPrint: day[] = [];
 
   isVisible = false;
+  isOutlineVisible = false;
 
   year = new Date().getFullYear();
   month = new Date().getMonth();
@@ -51,12 +52,17 @@ export class CalendarComponent {
   }
 
   onShowCalendar() {
-    this.isVisible = !this.isVisible;
+    this.changeVisibility()
     this.year = new Date().getFullYear();
     this.selectedYear = new Date().getFullYear();
     this.selectedMonth = new Date().getMonth();
     this.selectedDate = new Date(this.year, this.selectedMonth + 1, 0)
     this.daysToPrint = this.calculateDays(this.initialDayOfMonth);
+  }
+
+  changeVisibility() {
+    this.isVisible = !this.isVisible;
+    this.isOutlineVisible = !this.isOutlineVisible
   }
 
   calculateDays(firstDayOfMonth: Date) {
@@ -75,7 +81,7 @@ export class CalendarComponent {
         days.push({
           dayNumber: previousMonthDays - counterPrevious + 1,
           isPrevious: true,
-          month: this.selectedMonth, year: this.year
+          month: this.selectedMonth - 1, year: this.year
         })
         counterPrevious--;
 

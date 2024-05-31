@@ -9,6 +9,7 @@ button {
 
 .calendar-icon {
   position: relative;
+  z-index: 3;
 }
 
 .calendar {
@@ -25,6 +26,10 @@ button {
   grid-template-rows: auto 1fr;
   gap: 0.5rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateY(-20px);
+  z-index: 3;
 }
 
 .top-bar {
@@ -41,6 +46,8 @@ button {
 
 .visible {
   visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 table {
@@ -72,4 +79,19 @@ table {
 
 .old {
   color: gray;
+}
+
+.outline {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.visible-outline {
+  visibility: visible;
 }

@@ -1,3 +1,8 @@
+<div
+  [class.visible-outline]="isOutlineVisible"
+  class="outline"
+  (click)="changeVisibility()"
+></div>
 <div class="calendar-icon">
   <button type="button" (click)="onShowCalendar()">
     <img src="/assets/images/calendar-clear-outline.svg" alt="clock icon" />
