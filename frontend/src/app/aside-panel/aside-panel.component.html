@@ -10,20 +10,45 @@
   <div class="todo-options">
     <div class="today item">
       <img src="/assets/images/calendar.svg" alt="calendar-icon" />
-      <h4>Today tasks</h4>
+      <div class="edit">
+        <h4>Today tasks</h4>
+        <button type="button" (click)="changeEdit()">
+          <img src="/assets/images/edit.svg" alt="edit" />
+        </button>
+      </div>
+
       <div class="today-filters">
         <ul>
+          @for (tag of tags; track tag.id) {
           <li>
-            <p class="dot"></p>
-            <p>Personal</p>
+            <p class="dot" [style.background-color]="tag.color"></p>
+            <p>{{ tag.name | titlecase }}</p>
+            @if(isEdit){
+            <button type="button" (click)="onDeleteTag(tag.id)">
+              <span>✖️</span>
+            </button>
+            }
           </li>
-          <li>
-            <p class="dot"></p>
-            <p>Work</p>
-          </li>
-          <li>
-            <p class="dot"></p>
-            <p>Example</p>
+          }
+          <li class="create">
+            <input [(ngModel)]="color" class="exp2" type="color" />
+
+            <input
+              [(ngModel)]="tagName"
+              type="text"
+              maxlength="10"
+              placeholder="Create new"
+            />
+            @if(tagName.length>0){
+            <div class="add-options">
+              <button (click)="onSubmit()" type="button">
+                <span>✔️</span>
+              </button>
+              <button (click)="resetTagName()" type="button">
+                <span>✖️</span>
+              </button>
+            </div>
+            }
           </li>
         </ul>
       </div>

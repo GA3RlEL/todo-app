@@ -1,13 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-
-
-interface day {
-  dayNumber: number;
-  isPrevious: boolean;
-  month: number;
-  year: number;
-}
+import { TodosService } from '../../todos-section/todos.service';
+import { type day } from '../../todos-section/todos.model';
+import { VisibleService } from '../../visible.service';
 
 @Component({
   selector: 'app-calendar',
@@ -17,11 +12,18 @@ interface day {
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent {
+  constructor(private todosService: TodosService, private visibleService: VisibleService) { }
+
   daysName = ['Mon', 'Tue', 'Wed', "Thu", "Fri", "Sat", "Sun"];
   daysToPrint: day[] = [];
 
-  isVisible = false;
-  isOutlineVisible = false;
+
+  get isVisible() {
+    return this.visibleService.setVisibleCalendar
+  }
+  get isOutlineVisible() {
+    return this.visibleService.setVisibleCalendarOutline
+  }
 
   year = new Date().getFullYear();
   month = new Date().getMonth();
@@ -61,8 +63,7 @@ export class CalendarComponent {
   }
 
   changeVisibility() {
-    this.isVisible = !this.isVisible;
-    this.isOutlineVisible = !this.isOutlineVisible
+    this.visibleService.setVisibleCalendarFun();
   }
 
   calculateDays(firstDayOfMonth: Date) {
@@ -93,10 +94,12 @@ export class CalendarComponent {
     return days;
   }
 
-  onSelectDate(day:number, month: number, year: number) {
-    this.isVisible = false;
-
-    console.log(new Date(year, month, day));
+  onSelectDate(day: number, month: number, year: number) {
+    this.changeVisibility();
+    const date = new Date(year, month, day)
+    this.todosService.selectedDate = date
+    // console.log(date);
+    console.log(this.todosService.selectedDate);
   }
 
 }

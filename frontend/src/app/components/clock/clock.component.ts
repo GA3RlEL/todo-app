@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { VisibleService } from '../../visible.service';
 
 @Component({
   selector: 'app-clock',
@@ -9,10 +10,18 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './clock.component.css'
 })
 export class ClockComponent {
+  constructor(private visibleService: VisibleService) { }
   maxLenght = 2;
 
-  isVisible = false
-  isOutlineVisible = false;
+  get isVisible() {
+    return this.visibleService.setVisibleClock
+  }
+
+  get isOutlineVisible() {
+    return this.visibleService.setVisibleClockOutline
+  }
+
+
 
   hours = 0;
   minutes = 0;
@@ -52,8 +61,7 @@ export class ClockComponent {
   }
 
   changeVisibility() {
-    this.isVisible = !this.isVisible
-    this.isOutlineVisible = !this.isOutlineVisible
+    this.visibleService.setVisibleClockFun();
     this.reset()
   }
 
