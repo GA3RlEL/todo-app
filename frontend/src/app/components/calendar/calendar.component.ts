@@ -93,7 +93,7 @@ export class CalendarComponent {
     return days;
   }
 
-  onSelectDate(day: number, month: number, year: number) {
+  onSelectDate(day:number, month: number, year: number) {
     this.isVisible = false;
 
     console.log(new Date(year, month, day));

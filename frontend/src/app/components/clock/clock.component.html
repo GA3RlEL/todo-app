@@ -1,0 +1,60 @@
+<div
+  (click)="changeVisibility()"
+  [class.visible-outline]="isOutlineVisible"
+  class="outline"
+></div>
+
+<div class="clock-icon">
+  <button type="button" (click)="changeVisibility()">
+    <img src="/assets/images/time.svg" alt="clock icon" />
+  </button>
+
+  <form [class.visible]="isVisible" (ngSubmit)="onSubmit()">
+    <div class="clock">
+      <div class="hours">
+        <label for="hours">Hours</label>
+        <button type="button" (click)="increaseHour()">
+          <img src="/assets/images/chevron-up.svg" alt="up" />
+        </button>
+
+        <input
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          [maxLength]="maxLenght"
+          type="number"
+          name="hours"
+          id="hours"
+          [(ngModel)]="hours"
+          (ngModelChange)="checkHour()"
+        />
+        <button type="button" (click)="decreaseHour()">
+          <img src="/assets/images/chevron-downe.svg" alt="up" />
+        </button>
+      </div>
+      <div class="colon">
+        <span>:</span>
+      </div>
+      <div class="minutes">
+        <label for="minutes">Minutes</label>
+        <button type="button" (click)="increaseMinutes()">
+          <img src="/assets/images/chevron-up.svg" alt="up" />
+        </button>
+        <input
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          [maxLength]="maxLenght"
+          type="number"
+          id="minutes"
+          name="minutes"
+          [(ngModel)]="minutes"
+          (ngModelChange)="checkMinutes()"
+        />
+        <button type="button" (click)="decreaseMinutes()">
+          <img src="/assets/images/chevron-downe.svg" alt="up" />
+        </button>
+      </div>
+    </div>
+    <div class="buttons">
+      <button type="button" (click)="changeVisibility()">Cancel</button>
+      <button type="submit">OK</button>
+    </div>
+  </form>
+</div>
