@@ -97,9 +97,9 @@ export class CalendarComponent {
   onSelectDate(day: number, month: number, year: number) {
     this.changeVisibility();
     const date = new Date(year, month, day)
-    this.todosService.selectedDate = date
+    this.todosService.setDate(date)
     // console.log(date);
-    console.log(this.todosService.selectedDate);
+    // console.log(this.todosService.selectedDate);
   }
 
 }

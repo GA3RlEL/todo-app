@@ -3,16 +3,35 @@
     <h3>Today main focus</h3>
     <h2>Design your day</h2>
   </div>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="dots">
-      <p class="dot"></p>
-      <p class="dot"></p>
-      <p class="dot"></p>
-    </div>
+      @for (tag of tags; track tag.id) {
+      <button
+        (click)="selectTag(tag)"
+        [class.dot-selected]="selectedTag === tag ? true : false"
+        type="button"
+        class="dot"
+        [style.background-color]="tag.color"
+      >
+        <span class="hide">{{ tag.name }}</span>
+      </button>
 
-    <input type="text" placeholder="What is your next task?" />
+      }
+    </div>
+    <input
+      type="text"
+      [(ngModel)]="content"
+      placeholder="What is your next task?"
+      name="content"
+    />
 
     <div class="icons">
+      @if(content !==''){
+      <button>
+        <img src="/assets/images/checkmark-outline.svg" alt="checkmark" />
+      </button>
+      }
+
       <app-clock />
       <app-calendar />
     </div>
@@ -20,30 +39,20 @@
 
   <div class="tasks">
     <ul>
-      <li>
-        <p class="dot"></p>
-        <p class="task-content">Lorem ipsum</p>
-        <p class="task-time">8:00AM</p>
-        <img src="/assets/images/eclipse.svg" alt="eclipse" />
+      @for (todo of todos; track todo.id) {
+      <li @enterAnimation>
+        <p class="dot" [style.background-color]="findTag(todo.tagId)"></p>
+        <p class="task-content">{{ todo.content }}</p>
+        <p class="task-time">{{ todo.time.hours }}:{{ todo.time.minutes }}</p>
+        <button>
+          @if(todo.done){
+          <img src="/assets/images/checked.svg" alt="done" />
+          }@else {
+          <img src="/assets/images/eclipse.svg" alt="eclipse" />
+          }
+        </button>
       </li>
-      <li>
-        <p class="dot"></p>
-        <p class="task-content">Lorem ipsum</p>
-        <p class="task-time">8:00AM</p>
-        <img src="/assets/images/eclipse.svg" alt="eclipse" />
-      </li>
-      <li>
-        <p class="dot"></p>
-        <p class="task-content">Lorem ipsum</p>
-        <p class="task-time">8:00AM</p>
-        <img src="/assets/images/eclipse.svg" alt="eclipse" />
-      </li>
-      <li>
-        <p class="dot"></p>
-        <p class="task-content">Lorem ipsum</p>
-        <p class="task-time">8:00AM</p>
-        <img src="/assets/images/eclipse.svg" alt="eclipse" />
-      </li>
+      }
     </ul>
   </div>
 </main>

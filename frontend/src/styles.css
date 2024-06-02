@@ -15,4 +15,5 @@ html {
   height: 1rem;
   /* background-color: #274c77; */
   border-radius: 999999px;
+  position: relative;
 }

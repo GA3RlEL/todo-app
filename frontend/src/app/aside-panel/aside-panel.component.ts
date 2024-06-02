@@ -2,13 +2,22 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodosService } from '../todos-section/todos.service';
 import { TitleCasePipe } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-aside-panel',
   standalone: true,
   imports: [FormsModule, TitleCasePipe],
   templateUrl: './aside-panel.component.html',
-  styleUrl: './aside-panel.component.css'
+  styleUrl: './aside-panel.component.css',
+  animations: [
+    trigger('enterAnimation', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ])
+    ])
+  ],
 })
 export class AsidePanelComponent {
   constructor(private todosService: TodosService) { }

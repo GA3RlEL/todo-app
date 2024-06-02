@@ -50,13 +50,21 @@ form p {
 }
 
 .dots {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
   gap: 0.25rem;
 }
 
 .icons {
   display: flex;
   gap: 0.25rem;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 img {
@@ -98,6 +106,33 @@ img {
 
 .task-content {
   flex-grow: 1;
+}
+
+.hide {
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 2;
+}
+
+.dot {
+  cursor: pointer;
+}
+
+.dot-selected {
+  border: 1px solid black;
+}
+
+.dot:hover .hide {
+  visibility: visible;
+  opacity: 1;
+  background-color: #e9ecef;
+  padding: 0.2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 /* ------------------------------------------------ */

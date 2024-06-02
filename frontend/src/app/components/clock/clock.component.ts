@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { VisibleService } from '../../visible.service';
+import { Time } from '../../todos.model';
+import { TodosService } from '../../todos-section/todos.service';
 
 @Component({
   selector: 'app-clock',
@@ -10,7 +12,7 @@ import { VisibleService } from '../../visible.service';
   styleUrl: './clock.component.css'
 })
 export class ClockComponent {
-  constructor(private visibleService: VisibleService) { }
+  constructor(private visibleService: VisibleService, private todosService: TodosService) { }
   maxLenght = 2;
 
   get isVisible() {
@@ -21,10 +23,18 @@ export class ClockComponent {
     return this.visibleService.setVisibleClockOutline
   }
 
-
-
   hours = 0;
   minutes = 0;
+
+
+
+  onSubmit() {
+    console.log(this.hours + ":" + this.minutes);
+    const time: Time = { hours: this.hours, minutes: this.minutes }
+    this.reset()
+    this.changeVisibility()
+    this.todosService.setTime(time);
+  }
 
   checkHour() {
     console.log(this.hours);
@@ -65,11 +75,7 @@ export class ClockComponent {
     this.reset()
   }
 
-  onSubmit() {
-    console.log(this.hours + ":" + this.minutes);
-    this.reset()
-    this.changeVisibility()
-  }
+
 
   reset() {
     this.hours = 0;

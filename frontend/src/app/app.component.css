@@ -3,5 +3,5 @@ main {
   height: 100vh;
   display: grid;
   grid-template: 1fr;
-  grid-template-columns: 20rem auto;
+  grid-template-columns: 25rem auto;
 }

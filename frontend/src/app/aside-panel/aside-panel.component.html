@@ -20,7 +20,7 @@
       <div class="today-filters">
         <ul>
           @for (tag of tags; track tag.id) {
-          <li>
+          <li @enterAnimation>
             <p class="dot" [style.background-color]="tag.color"></p>
             <p>{{ tag.name | titlecase }}</p>
             @if(isEdit){
@@ -29,9 +29,9 @@
             </button>
             }
           </li>
-          }
-          <li class="create">
-            <input [(ngModel)]="color" class="exp2" type="color" />
+          } @if(tags.length<6){
+          <li class="create" @enterAnimation>
+            <input [(ngModel)]="color" type="color" />
 
             <input
               [(ngModel)]="tagName"
@@ -41,15 +41,14 @@
             />
             @if(tagName.length>0){
             <div class="add-options">
-              <button (click)="onSubmit()" type="button">
-                <span>✔️</span>
-              </button>
+              <button (click)="onSubmit()" type="button">✔️</button>
               <button (click)="resetTagName()" type="button">
                 <span>✖️</span>
               </button>
             </div>
             }
           </li>
+          }
         </ul>
       </div>
     </div>
