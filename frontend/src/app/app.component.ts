@@ -2,14 +2,18 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AsidePanelComponent } from "./aside-panel/aside-panel.component";
 import { TodosSectionComponent } from "./todos-section/todos-section.component";
+import { ErrorComponent } from "./components/error/error.component";
+import { TodosService } from './todos-section/todos.service';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, AsidePanelComponent, TodosSectionComponent]
+  imports: [RouterOutlet, AsidePanelComponent, TodosSectionComponent, ErrorComponent],
 })
 export class AppComponent {
   title = 'frontend';
+
 }

@@ -5,11 +5,18 @@ img {
 
 button {
   border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .calendar-icon {
   position: relative;
   z-index: 3;
+}
+
+.selected {
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .calendar {

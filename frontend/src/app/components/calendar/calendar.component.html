@@ -34,6 +34,9 @@
         <button
           (click)="onSelectDate(day.dayNumber, day.month, day.year)"
           [class.old]="day.isPrevious"
+          [class.selected]="
+            day.fullDate.getTime() == selectedDateTodoService.getTime()
+          "
           type="button"
         >
           {{ day.dayNumber }}

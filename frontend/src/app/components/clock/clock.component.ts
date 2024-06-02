@@ -23,6 +23,7 @@ export class ClockComponent {
     return this.visibleService.setVisibleClockOutline
   }
 
+
   hours = 0;
   minutes = 0;
 
@@ -31,7 +32,6 @@ export class ClockComponent {
   onSubmit() {
     console.log(this.hours + ":" + this.minutes);
     const time: Time = { hours: this.hours, minutes: this.minutes }
-    this.reset()
     this.changeVisibility()
     this.todosService.setTime(time);
   }
@@ -46,8 +46,8 @@ export class ClockComponent {
   }
 
   checkMinutes() {
-    if (this.minutes > 60) {
-      this.minutes = 60
+    if (this.minutes > 59) {
+      this.minutes = 59
     } if (this.minutes < 0) {
       this.minutes = 0
     }
@@ -72,10 +72,7 @@ export class ClockComponent {
 
   changeVisibility() {
     this.visibleService.setVisibleClockFun();
-    this.reset()
   }
-
-
 
   reset() {
     this.hours = 0;

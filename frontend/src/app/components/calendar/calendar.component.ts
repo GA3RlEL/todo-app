@@ -25,6 +25,10 @@ export class CalendarComponent {
     return this.visibleService.setVisibleCalendarOutline
   }
 
+  get selectedDateTodoService() {
+    return this.todosService.selectedDate;
+  }
+
   year = new Date().getFullYear();
   month = new Date().getMonth();
 
@@ -82,15 +86,17 @@ export class CalendarComponent {
         days.push({
           dayNumber: previousMonthDays - counterPrevious + 1,
           isPrevious: true,
-          month: this.selectedMonth - 1, year: this.year
+          month: this.selectedMonth - 1, year: this.year, fullDate: new Date(this.selectedYear, this.selectedMonth - 1, previousMonthDays - counterPrevious + 1)
         })
         counterPrevious--;
 
       } else {
-        days.push({ dayNumber: counterActuall, isPrevious: false, month: this.selectedMonth, year: this.year })
+        days.push({ dayNumber: counterActuall, isPrevious: false, month: this.selectedMonth, year: this.year, fullDate: new Date(this.selectedYear, this.selectedMonth, counterActuall) })
         counterActuall++;
       }
     }
+    console.log(days);
+    console.log(this.selectedDateTodoService);
     return days;
   }
 

@@ -17,3 +17,7 @@ html {
   border-radius: 999999px;
   position: relative;
 }
+
+body {
+  overflow: hidden;
+}

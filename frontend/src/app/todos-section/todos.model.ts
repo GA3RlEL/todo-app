@@ -3,4 +3,5 @@ export interface day {
   isPrevious: boolean;
   month: number;
   year: number;
+  fullDate: Date;
 }

@@ -24,9 +24,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class TodosSectionComponent {
   constructor(private todosService: TodosService) { }
 
-  selectedTag!: Tag;
-  content = '';
-
   get tags() {
     return this.todosService.tags;
   }
@@ -35,8 +32,20 @@ export class TodosSectionComponent {
     return this.todosService.todos;
   }
 
+  get selectedTag() {
+    return this.todosService.selectedTag;
+  }
+
+  content = ''
+
+  setContent() {
+    this.todosService.setContent(this.content);
+  }
+
   onSubmit() {
-    this.todosService.createTodo(this.content, this.selectedTag)
+    this.setContent()
+    const result = this.todosService.createTodo()
+    if (result) this.content = ''
   }
 
   findTag(tagId: number) {
@@ -45,8 +54,7 @@ export class TodosSectionComponent {
   }
 
   selectTag(tag: Tag) {
-    this.selectedTag = tag;
-    console.log(tag);
+    this.todosService.setTag(tag);
   }
 
 }

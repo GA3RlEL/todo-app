@@ -1,0 +1,13 @@
+@if(isError){
+<div class="error" @inAndOut>
+  <div>
+    <h1>Something went wrong!</h1>
+    <p>{{ errorMessage }} has to be provided to add task!</p>
+  </div>
+  <div>
+    <button (click)="onClick()">
+      <img src="/assets/images/close-outline.svg" alt="close icon" />
+    </button>
+  </div>
+</div>
+}

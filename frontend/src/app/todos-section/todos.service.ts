@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Tag, Time, Todo } from "../todos.model";
+import { Error } from "../components/error/error.model";
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
@@ -7,8 +8,13 @@ export class TodosService {
 
   todos: Todo[] = [{ id: 1, tagId: 1, content: "Lorem Ipsum", time: { hours: 8, minutes: 30 }, date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", time: { hours: 15, minutes: 59 }, date: new Date(), done: true }]
 
-  selectedDate!: Date;
-  time!: Time
+  selectedDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+  selectedTag!: Tag | undefined;
+  time!: Time | undefined
+  content!: string
+
+  isError: boolean = false
+  errorMessage?: Error
 
   addTag(tag: Tag) {
     this.tags.push(tag);
@@ -26,8 +32,54 @@ export class TodosService {
     this.selectedDate = date;
   }
 
-  createTodo(content: string, tag: Tag) {
-    this.todos.push({ content: content, date: this.selectedDate, done: false, id: this.todos.length + 1, tagId: tag.id, time: this.time })
+  setTag(tag: Tag) {
+    this.selectedTag = tag;
   }
+
+  setContent(content: string) {
+    this.content = content;
+  }
+
+  createTodo() {
+    if (!this.selectedTag) {
+      this.isError = true;
+      this.errorMessage = { message: 'Tag' }
+      return false
+    }
+    else if (!this.time) {
+      this.isError = true;
+      this.errorMessage = { message: "Time" }
+      return false
+    }
+    else if (!this.selectedDate) {
+      this.isError = true;
+      this.errorMessage = { message: 'Date' }
+      return false
+    }
+    else {
+      this.todos.push({ content: this.content, date: this.selectedDate, done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
+
+      this.resetTodo()
+      this.resetError();
+      return true;
+    }
+
+
+  }
+
+  resetTodo() {
+    this.content = ''
+    this.selectedTag = undefined;
+    this.selectedDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    this.time = undefined
+
+  }
+
+  resetError() {
+    this.isError = false;
+    this.errorMessage = { message: '' };
+  }
+
+
 
 }
