@@ -25,6 +25,11 @@ export class AsidePanelComponent {
   color = "#5c7bbc";
 
   isEdit = false
+  isMobile = true
+
+  showMobile() {
+    this.isMobile = !this.isMobile
+  }
 
   changeEdit() {
     this.isEdit = !this.isEdit;

@@ -6,11 +6,11 @@ import { Error } from "../components/error/error.model";
 export class TodosService {
   tags: Tag[] = [{ id: 1, name: "Personal", color: '#FB8281' }, { id: 2, name: "work", color: "#00FACE" }]
 
-  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", time: { hours: 8, minutes: 9 }, date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", time: { hours: 15, minutes: 59 }, date: new Date(), done: true }]
+  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", time: '22:00', date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", time: '23:00', date: new Date(), done: true }]
 
-  selectedDate: Date = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+  selectedDate: Date | undefined;
   selectedTag!: Tag | undefined;
-  time!: Time | undefined
+  time!: string
   content!: string
 
   isError: boolean = false
@@ -46,7 +46,7 @@ export class TodosService {
 
   }
 
-  setTime(time: Time) {
+  setTime(time: string) {
     this.time = time;
   }
 
@@ -68,18 +68,18 @@ export class TodosService {
       this.errorMessage = { message: 'Tag' }
       return false
     }
-    else if (!this.time) {
-      this.isError = true;
-      this.errorMessage = { message: "Time" }
-      return false
-    }
-    else if (!this.selectedDate) {
-      this.isError = true;
-      this.errorMessage = { message: 'Date' }
-      return false
-    }
+    // else if (!this.time) {
+    //   this.isError = true;
+    //   this.errorMessage = { message: "Time" }
+    //   return false
+    // }
+    // else if (!this.selectedDate) {
+    //   this.isError = true;
+    //   this.errorMessage = { message: 'Date' }
+    //   return false
+    // }
     else {
-      this.todos.push({ content: this.content, date: this.selectedDate, done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
+      this.todos.push({ content: this.content, date: new Date(), done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
 
       this.resetTodo()
       this.resetError();
@@ -92,8 +92,8 @@ export class TodosService {
   resetTodo() {
     this.content = ''
     this.selectedTag = undefined;
-    this.selectedDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-    this.time = undefined
+    this.selectedDate = undefined;
+    this.time = "";
 
   }
 

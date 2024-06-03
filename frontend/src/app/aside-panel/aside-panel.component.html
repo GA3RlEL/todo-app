@@ -1,13 +1,16 @@
-<aside>
+<aside [class.active]="isMobile">
   <div class="user">
     <img src="/assets/images/face.jpg" alt="face" />
-    <div>
+    <div class="user-info">
       <p>Do it!</p>
       <h3>Habibus</h3>
     </div>
+    <button (click)="showMobile()" class="btn-mobile">
+      <img src="/assets/images/chevron-up.svg" alt="up" />
+    </button>
   </div>
   <hr />
-  <div class="todo-options">
+  <div class="todo-options desktop">
     <div class="today item">
       <img src="/assets/images/calendar.svg" alt="calendar-icon" />
       <div class="edit">
@@ -41,9 +44,14 @@
             />
             @if(tagName.length>0){
             <div class="add-options">
-              <button (click)="onSubmit()" type="button">✔️</button>
+              <button (click)="onSubmit()" type="button">
+                <img
+                  src="/assets/images/checkmark-outline.svg"
+                  alt="checkmark"
+                />
+              </button>
               <button (click)="resetTagName()" type="button">
-                <span>✖️</span>
+                <img src="/assets/images/close-outline.svg" alt="close" />
               </button>
             </div>
             }
@@ -58,3 +66,63 @@
     </div>
   </div>
 </aside>
+
+<div class="mobile" [class.active-mobile]="isMobile">
+  <div class="mobile-content">
+    <div class="todo-options">
+      <div class="today item">
+        <img src="/assets/images/calendar.svg" alt="calendar-icon" />
+        <div class="edit">
+          <h4>Today tasks</h4>
+          <button type="button" (click)="changeEdit()">
+            <img src="/assets/images/edit.svg" alt="edit" />
+          </button>
+        </div>
+
+        <div class="today-filters">
+          <ul>
+            @for (tag of tags; track tag.id) {
+            <li @enterAnimation>
+              <p class="dot" [style.background-color]="tag.color"></p>
+              <p>{{ tag.name | titlecase }}</p>
+              @if(isEdit){
+              <button type="button" (click)="onDeleteTag(tag.id)">
+                <img src="/assets/images/close-outline.svg" alt="close" />
+              </button>
+              }
+            </li>
+            } @if(tags.length<6){
+            <li class="create" @enterAnimation>
+              <input [(ngModel)]="color" type="color" />
+
+              <input
+                [(ngModel)]="tagName"
+                type="text"
+                maxlength="10"
+                placeholder="Create new"
+              />
+              @if(tagName.length>0){
+              <div class="add-options">
+                <button (click)="onSubmit()" type="button">
+                  <img
+                    src="/assets/images/checkmark-outline.svg"
+                    alt="checkmark"
+                  />
+                </button>
+                <button (click)="resetTagName()" type="button">
+                  <img src="/assets/images/close-outline.svg" alt="close" />
+                </button>
+              </div>
+              }
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="settings item">
+        <img src="/assets/images/settings.svg" alt="settings" />
+        <h4>Settings</h4>
+      </div>
+    </div>
+  </div>
+</div>

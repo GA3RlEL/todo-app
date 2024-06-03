@@ -29,7 +29,7 @@ main {
 /* ------------------------FORM------------------ */
 
 form input {
-  width: 80%;
+  width: 60%;
   padding: 1.25rem;
   border: 1px solid #e9ecef;
   background-color: #e9ecef;
@@ -163,6 +163,23 @@ img {
   main {
     padding-left: 36rem;
     padding-right: 36rem;
+  }
+}
+
+@media (max-width: 640px) {
+  main {
+    padding: 1rem;
+  }
+
+  form input {
+    width: 70%;
+    padding: 1rem;
+  }
+
+  .dot {
+    width: 1.6rem;
+    height: 1.6rem;
+    gap: 1.2rem;
   }
 }
 

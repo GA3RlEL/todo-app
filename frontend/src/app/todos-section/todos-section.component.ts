@@ -1,6 +1,5 @@
 import { Component, importProvidersFrom } from '@angular/core';
-import { CalendarComponent } from "../components/calendar/calendar.component";
-import { ClockComponent } from "../components/clock/clock.component";
+
 import { TodosService } from './todos.service';
 import { Tag, Todo } from '../todos.model';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +11,7 @@ import { DatePipe } from '@angular/common';
   standalone: true,
   templateUrl: './todos-section.component.html',
   styleUrl: './todos-section.component.css',
-  imports: [CalendarComponent, ClockComponent, FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe],
   animations: [
     trigger('enterAnimation', [
       transition(':enter', [
@@ -37,6 +36,9 @@ export class TodosSectionComponent {
     return this.todosService.selectedTag;
   }
 
+
+  time = "";
+
   content = ''
 
   setContent() {
@@ -47,10 +49,18 @@ export class TodosSectionComponent {
     this.todosService.updateTodoDone(id);
   }
 
+  setTime() {
+    this.todosService.setTime(this.time);
+  }
+
   onSubmit() {
     this.setContent()
+    this.setTime();
     const result = this.todosService.createTodo()
-    if (result) this.content = ''
+    if (result) {
+      this.content = ''
+      this.time = ''
+    }
   }
 
   findTag(tagId: number) {
