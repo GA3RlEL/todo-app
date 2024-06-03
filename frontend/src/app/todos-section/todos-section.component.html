@@ -41,15 +41,29 @@
   <div class="tasks">
     <ul>
       @for (todo of todos; track todo.id) {
-      <li @enterAnimation>
+      <li @enterAnimation [class.completed]="todo.done">
         <p class="dot" [style.background-color]="findTag(todo.tagId)"></p>
         <p class="task-content">{{ todo.content }}</p>
-        <p class="task-time">{{ todo.time.hours }}:{{ todo.time.minutes }}</p>
+        <p class="task-date">
+          {{ todo.date | date }}
+        </p>
+        <p class="task-time">
+          {{
+            todo.time.hours < 10 ? "0" + todo.time.hours : todo.time.hours
+          }}:{{
+            todo.time.minutes < 10 ? "0" + todo.time.minutes : todo.time.minutes
+          }}
+        </p>
         <button>
           @if(todo.done){
-          <img src="/assets/images/checked.svg" alt="done" />
+          <button type="button" (click)="completeTask(todo.id)">
+            <img src="/assets/images/checked.svg" alt="done" />
+          </button>
+
           }@else {
-          <img src="/assets/images/eclipse.svg" alt="eclipse" />
+          <button type="button" (click)="completeTask(todo.id)">
+            <img src="/assets/images/eclipse.svg" alt="eclipse" />
+          </button>
           }
         </button>
       </li>

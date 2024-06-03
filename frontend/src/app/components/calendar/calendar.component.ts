@@ -95,8 +95,8 @@ export class CalendarComponent {
         counterActuall++;
       }
     }
-    console.log(days);
-    console.log(this.selectedDateTodoService);
+    // console.log(days);
+    // console.log(this.selectedDateTodoService);
     return days;
   }
 
