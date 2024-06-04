@@ -210,6 +210,7 @@ input[type="color"]::-webkit-color-swatch {
     height: 100%;
     padding: 2rem 0rem;
     margin-top: 1rem;
+    overflow: scroll;
   }
 
   .today-filters p {

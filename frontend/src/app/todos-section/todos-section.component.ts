@@ -4,14 +4,14 @@ import { TodosService } from './todos.service';
 import { Tag, Todo } from '../todos.model';
 import { FormsModule } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-todos-section',
   standalone: true,
   templateUrl: './todos-section.component.html',
   styleUrl: './todos-section.component.css',
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe, TitleCasePipe],
   animations: [
     trigger('enterAnimation', [
       transition(':enter', [
@@ -41,6 +41,11 @@ export class TodosSectionComponent {
 
   content = ''
 
+  date = '';
+
+  selectedTagSelect = '';
+
+
   setContent() {
     this.todosService.setContent(this.content);
   }
@@ -53,13 +58,21 @@ export class TodosSectionComponent {
     this.todosService.setTime(this.time);
   }
 
+  setDate() {
+    this.todosService.setDate(new Date(this.date))
+  }
+
   onSubmit() {
+
     this.setContent()
     this.setTime();
+    this.setDate();
+
     const result = this.todosService.createTodo()
     if (result) {
       this.content = ''
       this.time = ''
+      this.date = ''
     }
   }
 

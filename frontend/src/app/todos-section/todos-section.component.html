@@ -13,11 +13,28 @@
         class="dot"
         [style.background-color]="tag.color"
       >
-        <span class="hide">{{ tag.name }}</span>
+        <span class="hide">{{ tag.name | titlecase }}</span>
       </button>
-
       }
     </div>
+    <!-- <div class="select-container">
+      <select
+        [(ngModel)]="selectedTagSelect"
+        class="mobile-dots select-hidden"
+        name="dots"
+        id="dots"
+        (click)="what()"
+      >
+        @for(tag of tags; track tag.id){
+        <option [value]="tag.id" [style.background-color]="tag.color">
+          <p>{{ tag.name | titlecase }}</p>
+        </option>
+
+        }
+      </select>
+      <div class="dot-select"></div>
+    </div> -->
+
     <input
       type="text"
       [(ngModel)]="content"
@@ -34,7 +51,7 @@
       }
 
       <input required type="time" name="time" id="time" [(ngModel)]="time" />
-      <input required type="date" name="date" id="date" />
+      <input required [(ngModel)]="date" type="date" name="date" id="date" />
     </div>
   </form>
 

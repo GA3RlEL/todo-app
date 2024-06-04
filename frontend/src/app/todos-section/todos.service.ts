@@ -8,7 +8,7 @@ export class TodosService {
 
   todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", time: '22:00', date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", time: '23:00', date: new Date(), done: true }]
 
-  selectedDate: Date | undefined;
+  selectedDate!: Date | null;
   selectedTag!: Tag | undefined;
   time!: string
   content!: string
@@ -79,7 +79,7 @@ export class TodosService {
     //   return false
     // }
     else {
-      this.todos.push({ content: this.content, date: new Date(), done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
+      this.todos.push({ content: this.content, date: this.selectedDate || new Date(), done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
 
       this.resetTodo()
       this.resetError();
@@ -92,7 +92,7 @@ export class TodosService {
   resetTodo() {
     this.content = ''
     this.selectedTag = undefined;
-    this.selectedDate = undefined;
+    this.selectedDate = null;
     this.time = "";
 
   }
