@@ -78,6 +78,7 @@ img {
 
 .tasks {
   width: 100%;
+  overflow: scroll;
 }
 
 .tasks ul {
@@ -188,32 +189,6 @@ form input {
 }
 
 /* ------------------------------------------------ */
-
-.select-container {
-  position: relative;
-  display: inline-block;
-}
-
-.select-hidden {
-  opacity: 0;
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.dot-select {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  background-color: red;
-}
 
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {

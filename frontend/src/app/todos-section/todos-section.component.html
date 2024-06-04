@@ -4,36 +4,24 @@
     <h2>Design your day</h2>
   </div>
   <form (ngSubmit)="onSubmit()" ngNativeValidate>
-    <div class="dots">
-      @for (tag of tags; track tag.id) {
-      <button
-        (click)="selectTag(tag)"
-        [class.dot-selected]="selectedTag === tag ? true : false"
-        type="button"
-        class="dot"
-        [style.background-color]="tag.color"
-      >
-        <span class="hide">{{ tag.name | titlecase }}</span>
+    <div class="select-container">
+      @if (!selectedTag) {
+      <div class="no-tag">
+        <button type="button">
+          <img
+            (click)="showSelectTag()"
+            src="/assets/images/chevron-downe.svg"
+            alt="arrow-down"
+          />
+        </button>
+      </div>
+      }@else {
+      <button (click)="showSelectTag()" type="button">
+        <p class="dot" [style.background-color]="selectedTag.color"></p>
       </button>
+
       }
     </div>
-    <!-- <div class="select-container">
-      <select
-        [(ngModel)]="selectedTagSelect"
-        class="mobile-dots select-hidden"
-        name="dots"
-        id="dots"
-        (click)="what()"
-      >
-        @for(tag of tags; track tag.id){
-        <option [value]="tag.id" [style.background-color]="tag.color">
-          <p>{{ tag.name | titlecase }}</p>
-        </option>
-
-        }
-      </select>
-      <div class="dot-select"></div>
-    </div> -->
 
     <input
       type="text"

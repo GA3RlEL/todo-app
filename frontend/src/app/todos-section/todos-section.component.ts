@@ -85,4 +85,8 @@ export class TodosSectionComponent {
     this.todosService.setTag(tag);
   }
 
+  showSelectTag() {
+    this.todosService.isSelectTag = true
+  }
+
 }

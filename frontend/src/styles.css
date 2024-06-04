@@ -24,9 +24,22 @@ body {
   width: 100vw;
 }
 
-main {
+app-todos-section {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-app-todos-section {
-  overflow: scroll;
+app-aside-panel {
+  position: relative;
+  z-index: 2;
+}
+
+app-select-tag {
+  position: absolute;
+  z-index: 3;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

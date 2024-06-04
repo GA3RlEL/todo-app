@@ -16,6 +16,9 @@ export class TodosService {
   isError: boolean = false
   errorMessage?: Error
 
+  isSelectTag: boolean = true;
+
+
   addTag(tag: Tag) {
     this.tags.push(tag);
   }

@@ -1,0 +1,12 @@
+@if(isVisible) {
+<div class="outline" (click)="close()" @inAndOut></div>
+
+<ul class="options" @inAndOut>
+  @for (tag of tags; track tag.id) {
+  <li (click)="setTag(tag)">
+    <p class="dot" [style.background-color]="tag.color"></p>
+    <p>{{ tag.name | titlecase }}</p>
+  </li>
+  }
+</ul>
+}
