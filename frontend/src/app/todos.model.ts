@@ -10,7 +10,6 @@ export interface Todo {
   content: string;
   done: boolean;
   date: Date;
-  time: string;
 }
 
 export interface Time {

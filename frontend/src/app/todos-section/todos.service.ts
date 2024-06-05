@@ -6,17 +6,16 @@ import { Error } from "../components/error/error.model";
 export class TodosService {
   tags: Tag[] = [{ id: 1, name: "Personal", color: '#FB8281' }, { id: 2, name: "work", color: "#00FACE" }]
 
-  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", time: '22:00', date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", time: '23:00', date: new Date(), done: true }]
+  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", date: new Date(), done: true }]
 
   selectedDate!: Date | null;
   selectedTag!: Tag | undefined;
-  time!: string
   content!: string
 
   isError: boolean = false
   errorMessage?: Error
 
-  isSelectTag: boolean = true;
+  isSelectTag: boolean = false;
 
 
   addTag(tag: Tag) {
@@ -49,9 +48,6 @@ export class TodosService {
 
   }
 
-  setTime(time: string) {
-    this.time = time;
-  }
 
   setDate(date: Date) {
     this.selectedDate = date;
@@ -82,7 +78,7 @@ export class TodosService {
     //   return false
     // }
     else {
-      this.todos.push({ content: this.content, date: this.selectedDate || new Date(), done: false, id: this.todos.length + 1, tagId: this.selectedTag.id, time: this.time })
+      this.todos.push({ content: this.content, date: this.selectedDate || new Date(), done: false, id: this.todos.length + 1, tagId: this.selectedTag.id })
 
       this.resetTodo()
       this.resetError();
@@ -96,7 +92,6 @@ export class TodosService {
     this.content = ''
     this.selectedTag = undefined;
     this.selectedDate = null;
-    this.time = "";
 
   }
 

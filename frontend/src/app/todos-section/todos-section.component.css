@@ -148,6 +148,40 @@ form input {
   flex-grow: 1;
 }
 
+.clock-container,
+.date-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.clock-container label,
+.date-container label {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.clock-container label img,
+.date-container label img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.clock-container input,
+.date-container input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
 /* ------------------------------------------------ */
 
 /* -------------------RESPONSIVE------------------- */
@@ -186,14 +220,16 @@ form input {
     height: 1.6rem;
     gap: 1.2rem;
   }
+  .clock-container,
+  .date-container {
+    display: flex;
+  }
 }
 
 /* ------------------------------------------------ */
 
-input[type="date"]::-webkit-inner-spin-button,
+/* input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
-  /* display: none;
-    -webkit-appearance: none; */
   margin: 0;
   font-size: x-large;
 }
@@ -203,11 +239,10 @@ input[type="date"]::-webkit-datetime-edit {
 
 input[type="time"]::-webkit-inner-spin-button,
 input[type="time"]::-webkit-calendar-picker-indicator {
-  /* display: none;
-  -webkit-appearance: none; */
   margin: 0;
   font-size: x-large;
 }
+
 input[type="time"]::-webkit-datetime-edit {
   display: none;
-}
+} */

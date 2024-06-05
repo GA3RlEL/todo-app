@@ -36,14 +36,15 @@ export class TodosSectionComponent {
     return this.todosService.selectedTag;
   }
 
-
-  time = "";
-
   content = ''
 
   date = '';
 
   selectedTagSelect = '';
+
+  openDatePicker(dateInput: HTMLInputElement) {
+    dateInput.showPicker();
+  }
 
 
   setContent() {
@@ -54,9 +55,6 @@ export class TodosSectionComponent {
     this.todosService.updateTodoDone(id);
   }
 
-  setTime() {
-    this.todosService.setTime(this.time);
-  }
 
   setDate() {
     this.todosService.setDate(new Date(this.date))
@@ -65,13 +63,11 @@ export class TodosSectionComponent {
   onSubmit() {
 
     this.setContent()
-    this.setTime();
     this.setDate();
 
     const result = this.todosService.createTodo()
     if (result) {
       this.content = ''
-      this.time = ''
       this.date = ''
     }
   }
