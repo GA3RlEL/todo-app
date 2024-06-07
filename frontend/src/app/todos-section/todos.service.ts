@@ -6,7 +6,7 @@ import { Error } from "../components/error/error.model";
 export class TodosService {
   tags: Tag[] = [{ id: 1, name: "Personal", color: '#FB8281' }, { id: 2, name: "work", color: "#00FACE" }]
 
-  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem Ipsum", date: new Date(), done: false }, { id: 2, tagId: 2, content: "Lorem Ipsum", date: new Date(), done: true }]
+  todos: Todo[] = [{ id: 1, tagId: 2, content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis quam reprehenderit labore deleniti praesentium nulla sapiente illum fugit similique impedit non, id ipsum animi eveniet laboriosam reiciendis temporibus deserunt error!", date: new Date(), done: false }, { id: 2, tagId: 2, content: "dsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsa", date: new Date(), done: true }]
 
   selectedDate!: Date | null;
   selectedTag!: Tag | undefined;

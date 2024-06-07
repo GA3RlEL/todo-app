@@ -96,8 +96,9 @@ img {
   border-radius: 1rem;
   padding: 1.25rem;
   border: 1px solid #e9ecef;
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: auto 1fr auto auto;
   gap: 1rem;
   transition: all 0.3s ease-in-out;
 }
@@ -109,7 +110,8 @@ img {
 }
 
 .task-content {
-  flex-grow: 1;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .hide {

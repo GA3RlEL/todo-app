@@ -60,7 +60,7 @@
   <div class="tasks">
     <ul>
       @for (todo of todos; track todo.id) {
-      <li @enterAnimation [class.completed]="todo.done">
+      <li @enterAnimation [class.completed]="todo.done" #todo>
         <p class="dot" [style.background-color]="findTag(todo.tagId)"></p>
         <p class="task-content">{{ todo.content }}</p>
         <p class="task-date">
