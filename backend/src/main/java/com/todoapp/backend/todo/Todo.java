@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.todoapp.backend.tag.Tag;
+import com.todoapp.backend.user.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,20 +16,37 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@ToString
 public class Todo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Getter
+  @Setter
   private Long id;
 
   @ManyToOne
   @JsonIgnore
+  @Getter
+  @Setter
   private Tag tag;
 
+  @ManyToOne
+  @JsonIgnore
+  @Getter
+  @Setter
+  private User user;
+
+  @Getter
+  @Setter
   private String content;
 
+  @Getter
+  @Setter
   private Boolean done;
 
+  @Getter
+  @Setter
   private Date date;
 
   public Todo(Long id, String content, Boolean done, Date date, Tag tag) {
@@ -40,51 +58,6 @@ public class Todo {
   }
 
   public Todo() {
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-  public Boolean getDone() {
-    return done;
-  }
-
-  public void setDone(Boolean done) {
-    this.done = done;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  @Override
-  public String toString() {
-    return "Todo [id=" + id + ", content=" + content + ", done=" + done + ", date=" + date + "]";
-  }
-
-  public Tag getTag() {
-    return tag;
-  }
-
-  public void setTag(Tag tag) {
-    this.tag = tag;
   }
 
 }
