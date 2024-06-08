@@ -8,11 +8,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.todoapp.backend.todo.TodoRepository;
+
 @RestController
 public class TagController {
 
-  @Autowired()
   private TagRepository tagRepository;
+
+  public TagController(TagRepository tagRepository, TodoRepository todoRepository) {
+    this.tagRepository = tagRepository;
+  }
 
   @GetMapping("/tags")
   public List<Tag> getTags() {
