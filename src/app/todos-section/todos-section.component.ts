@@ -1,7 +1,7 @@
 import { Component, importProvidersFrom } from '@angular/core';
 
-import { TodosService } from './todos.service';
-import { Tag, Todo } from '../todos.model';
+import { TodosService } from '../services/todos.service';
+import { Tag, Todo } from '../models/todos.model';
 import { FormsModule } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { DatePipe, TitleCasePipe } from '@angular/common';
@@ -72,7 +72,7 @@ export class TodosSectionComponent {
     }
   }
 
-  findTag(tagId: number) {
+  findTag(tagId: string) {
     const tag: Tag[] = this.tags.filter(tag => tag.id === tagId)
     return tag[0].color
   }

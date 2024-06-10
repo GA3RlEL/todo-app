@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TodosService } from '../todos-section/todos.service';
+import { TodosService } from '../services/todos.service';
 import { TitleCasePipe } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { FirebaseService } from '../services/firebase.service';
+import { Tag } from '../models/todos.model';
 
 @Component({
   selector: 'app-aside-panel',
@@ -20,9 +22,18 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ],
 })
 export class AsidePanelComponent {
-  constructor(private todosService: TodosService) { }
+  constructor(private todosService: TodosService,private firebaseService:FirebaseService) { }
   tagName = '';
   color = "#5c7bbc";
+
+  ngOnInit(){
+    this.firebaseService.getTodos().subscribe(todos=>{
+      console.log(todos)
+    })
+    this.firebaseService.getTags().subscribe((tags) => {
+      this.todosService.setTags(tags);
+    });
+  }
 
   isEdit = false
   isMobile = false
@@ -45,12 +56,15 @@ export class AsidePanelComponent {
   }
 
   onSubmit() {
-    this.todosService.addTag({ id: this.tags.length + 1, name: this.tagName, color: this.color })
-    this.resetTagName();
+    this.firebaseService.addTag({color:this.color,name:this.tagName})
+    this.resetTagName()
   }
 
-  onDeleteTag(id: number) {
-    this.todosService.deleteTag(id);
+  onDeleteTag(id: string) {
+
+    this.firebaseService.deleteTag(id)
+
+
   }
 
 

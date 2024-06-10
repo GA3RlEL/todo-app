@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { TodosService } from '../../todos-section/todos.service';
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'app-error',

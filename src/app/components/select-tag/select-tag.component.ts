@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TodosService } from '../../todos-section/todos.service';
+import { TodosService } from '../../services/todos.service';
 import { TitleCasePipe } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Tag } from '../../todos.model';
+import { Tag } from '../../models/todos.model';
 
 @Component({
   selector: 'app-select-tag',

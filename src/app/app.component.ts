@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { AsidePanelComponent } from "./aside-panel/aside-panel.component";
 import { TodosSectionComponent } from "./todos-section/todos-section.component";
 import { ErrorComponent } from "./components/error/error.component";
-import { TodosService } from './todos-section/todos.service';
+import { TodosService } from './services/todos.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SelectTagComponent } from "./components/select-tag/select-tag.component";
 
