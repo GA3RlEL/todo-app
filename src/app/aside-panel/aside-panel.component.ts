@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodosService } from '../services/todos.service';
 import { TitleCasePipe } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FirebaseService } from '../services/firebase.service';
 import { Tag } from '../models/todos.model';
+import { AuthService } from '../services/auth.service';
+import { UserInterface } from '../models/user.mode';
 
 @Component({
   selector: 'app-aside-panel',
@@ -16,30 +18,37 @@ import { Tag } from '../models/todos.model';
     trigger('enterAnimation', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
-      ])
-    ])
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
 export class AsidePanelComponent {
-  constructor(private todosService: TodosService,private firebaseService:FirebaseService) { }
+  constructor(
+    private todosService: TodosService,
+    private firebaseService: FirebaseService
+  ) {}
+  authService = inject(AuthService);
   tagName = '';
-  color = "#5c7bbc";
-
-  ngOnInit(){
-    this.firebaseService.getTodos().subscribe(todos=>{
-      console.log(todos)
-    })
+  color = '#5c7bbc';
+  ngOnInit() {
+    this.firebaseService.getTodos().subscribe((todos) => {
+      console.log(todos);
+    });
     this.firebaseService.getTags().subscribe((tags) => {
       this.todosService.setTags(tags);
     });
   }
 
-  isEdit = false
-  isMobile = false
+  get user() {
+    return this.authService.currnetUserSig();
+  }
+
+  isEdit = false;
+  isMobile = false;
 
   showMobile() {
-    this.isMobile = !this.isMobile
+    this.isMobile = !this.isMobile;
   }
 
   changeEdit() {
@@ -52,21 +61,15 @@ export class AsidePanelComponent {
 
   resetTagName() {
     this.tagName = '';
-    this.color = '#5c7bbc'
+    this.color = '#5c7bbc';
   }
 
   onSubmit() {
-    this.firebaseService.addTag({color:this.color,name:this.tagName})
-    this.resetTagName()
+    this.firebaseService.addTag({ color: this.color, name: this.tagName });
+    this.resetTagName();
   }
 
   onDeleteTag(id: string) {
-
-    this.firebaseService.deleteTag(id)
-
-
+    this.firebaseService.deleteTag(id);
   }
-
-
-
 }

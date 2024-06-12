@@ -13,7 +13,7 @@ import { ErrorService } from '../services/error.service';
   imports: [CarouselComponent, FormsModule],
 })
 export class LoginComponent {
-  signUp = true;
+  signUp = false;
   authService = inject(AuthService);
   router = inject(Router);
   errorService = inject(ErrorService);
