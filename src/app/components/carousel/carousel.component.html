@@ -1,0 +1,26 @@
+<div class="testimonial">
+  <div class="testimonial-item">
+    <p class="testimonial-text">
+      {{ testimonials[actuallIndex].content }}
+    </p>
+    <div class="testimonial-user">
+      <img
+        [src]="testimonials[actuallIndex].image"
+        [alt]="testimonials[actuallIndex].personalData.name"
+      />
+      <div>
+        <h2>{{ testimonials[actuallIndex].personalData.name }}</h2>
+        <p>{{ testimonials[actuallIndex].personalData.position }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="dots">
+    @for (test of testimonials; track test.id) {
+    <div
+      (click)="changeIndex(test.id)"
+      class="dot"
+      [class.active]="test.id === actuallIndex"
+    ></div>
+    }
+  </div>
+</div>

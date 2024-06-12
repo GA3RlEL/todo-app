@@ -1,11 +1,6 @@
-body {
+main {
   width: 100vw;
   height: 100dvh;
-}
-
-main {
-  height: 100%;
-  width: 100%;
   background-color: #1f3d5f;
   display: flex;
   justify-content: center;
@@ -14,7 +9,6 @@ main {
 }
 
 .content {
-  width: 70%;
   background-color: white;
   padding: 0.5rem;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -26,14 +20,18 @@ main {
 
 .left-panel {
   background-color: #274c77;
-  padding: 0.7rem;
+  padding: 3rem;
   border-radius: 0.5rem;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 form div {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.5rem;
 }
 
 form div label {
@@ -41,17 +39,12 @@ form div label {
   margin-bottom: 0.25rem;
 }
 
-form div input {
-  border: 1px solid #ced4da;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-
 .right-panel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
+  padding: 6rem;
+  justify-content: center;
 }
 
 .right-panel div p {
@@ -61,9 +54,38 @@ form div input {
 
 .btn {
   margin-top: 2rem;
-  padding: 1rem 1.5rem;
+  padding: 2rem 3rem;
   background-color: #274c77;
   color: white;
   border: none;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+}
+
+/* -------------------------FONTS-------------------------- */
+
+.left-panel h1 {
+  font-size: 3rem;
+}
+.left-panel h2 {
+  font-size: 2.5rem;
+}
+.left-panel p {
+  font-size: 2rem;
+}
+
+.right-panel h2 {
+  font-size: 3rem;
+}
+.right-panel p {
+  font-size: 2rem;
+}
+.right-panel label {
+  font-size: 2rem;
+}
+
+form div input {
+  border: 1px solid #ced4da;
+  padding: 2rem;
   border-radius: 0.5rem;
 }

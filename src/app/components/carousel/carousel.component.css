@@ -1,0 +1,72 @@
+.testimonial-user h2 {
+  font-size: 1rem;
+}
+.testimonial-user p {
+  font-size: 0.75rem;
+}
+.testimonial-user img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.75rem;
+}
+
+.testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial-user {
+  display: flex;
+  gap: 1rem;
+}
+
+.testimonial-user div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.testimonial h1 {
+  font-size: 3rem;
+}
+.testimonial h2 {
+  font-size: 2.5rem;
+}
+.testimonial p {
+  font-size: 2rem;
+}
+
+.dots {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.dot {
+  margin-top: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease-in-out;
+}
+
+.active {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
