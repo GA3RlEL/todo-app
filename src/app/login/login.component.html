@@ -14,24 +14,74 @@
 
     <div class="right-panel">
       <div>
-        <h2>Sign up</h2>
-        <p>Have an already account? <a>Log in</a></p>
+        <h2>{{ signUp ? "Sign Up" : "Log In" }}</h2>
+        <div class="change">
+          <p>
+            {{
+              signUp ? "Already have an account?" : "Don''t have an account?"
+            }}
+          </p>
+          <button (click)="changeState()" class="btn-link">
+            {{ signUp ? "Log In" : "Sign Up" }}
+          </button>
+        </div>
       </div>
+      @if(signUp){
       <form>
         <div>
           <label for="email">email</label>
-          <input type="email" name="email" id="email" />
+          <input
+            [(ngModel)]="registerEmail"
+            type="email"
+            name="email"
+            id="email"
+          />
         </div>
         <div>
           <label for="password">password</label>
-          <input type="password" name="password" id="password" />
+          <input
+            [(ngModel)]="registerPassword"
+            type="password"
+            name="password"
+            id="password"
+          />
         </div>
         <div>
           <label for="username">username</label>
-          <input type="text" name="username" id="username" />
+          <input
+            [(ngModel)]="registerUsername"
+            type="text"
+            name="username"
+            id="username"
+          />
         </div>
-        <button class="btn">Create account</button>
+        <button type="button" class="btn" (click)="onRegister()">
+          Create account
+        </button>
       </form>
+      }@else {
+      <form>
+        <div>
+          <label for="email">email</label>
+          <input
+            [(ngModel)]="loginEmail"
+            type="email"
+            name="email"
+            id="email"
+          />
+        </div>
+        <div>
+          <label for="password">password</label>
+          <input
+            [(ngModel)]="loginPassword"
+            type="password"
+            name="password"
+            id="password"
+          />
+        </div>
+        <button type="button" class="btn" (click)="onLogin()">Log In</button>
+      </form>
+      }
     </div>
   </div>
 </main>
