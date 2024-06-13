@@ -3,7 +3,7 @@
     <img src="/assets/images/face.jpg" alt="face" />
     <div class="user-info">
       <p>Do it!</p>
-      <h3>{{ user?.username }}</h3>
+      <h3>{{ user?.username | titlecase }}</h3>
     </div>
     <button (click)="showMobile()" class="btn-mobile">
       <img src="/assets/images/chevron-up.svg" alt="up" />
@@ -60,10 +60,14 @@
         </ul>
       </div>
     </div>
-    <div class="settings item">
+    <button class="item menu-btn">
       <img src="/assets/images/settings.svg" alt="settings" />
       <h4>Settings</h4>
-    </div>
+    </button>
+    <button (click)="logout()" class="item menu-btn">
+      <img src="/assets/images/log-out-outline.svg" alt="logout icon" />
+      <h4>Logout</h4>
+    </button>
   </div>
 </aside>
 
@@ -119,10 +123,14 @@
           </ul>
         </div>
       </div>
-      <div class="settings item">
+      <button class="menu-btn item">
         <img src="/assets/images/settings.svg" alt="settings" />
         <h4>Settings</h4>
-      </div>
+      </button>
+      <button (click)="logout()" class="item menu-btn">
+        <img src="/assets/images/log-out-outline.svg" alt="logout icon" />
+        <h4>Logout</h4>
+      </button>
     </div>
   </div>
 </div>

@@ -17,9 +17,7 @@
         <h2>{{ signUp ? "Sign Up" : "Log In" }}</h2>
         <div class="change">
           <p>
-            {{
-              signUp ? "Already have an account?" : "Don''t have an account?"
-            }}
+            {{ signUp ? "Already have an account?" : "Don't have an account?" }}
           </p>
           <button (click)="changeState()" class="btn-link">
             {{ signUp ? "Log In" : "Sign Up" }}
@@ -55,8 +53,13 @@
             id="username"
           />
         </div>
-        <button type="button" class="btn" (click)="onRegister()">
-          Create account
+        <button
+          [disabled]="isLoading"
+          type="button"
+          class="btn"
+          (click)="onRegister()"
+        >
+          {{ !isLoading ? "Create account" : "Wait" }}
         </button>
       </form>
       }@else {
@@ -79,7 +82,14 @@
             id="password"
           />
         </div>
-        <button type="button" class="btn" (click)="onLogin()">Log In</button>
+        <button
+          [disabled]="isLoading"
+          type="button"
+          class="btn"
+          (click)="onLogin()"
+        >
+          {{ !isLoading ? "Log In" : "Wait" }}
+        </button>
       </form>
       }
     </div>

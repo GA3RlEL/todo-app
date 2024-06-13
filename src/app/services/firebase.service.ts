@@ -9,7 +9,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { AddTag, Tag, Todo } from '../models/todos.model';
+import { AddTag, Todo } from '../models/todos.model';
 import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
@@ -56,5 +56,12 @@ export class FirebaseService {
   deleteTag(id: string) {
     const docRef = doc(this.firestore, 'tags/' + id);
     deleteDoc(docRef);
+  }
+
+  deleteTodos(todos: any[]) {
+    console.log(todos);
+    todos.map((todo) => {
+      deleteDoc(doc(this.firestore, 'todos/' + todo.id));
+    });
   }
 }

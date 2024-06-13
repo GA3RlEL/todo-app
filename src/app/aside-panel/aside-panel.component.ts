@@ -7,6 +7,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { Tag } from '../models/todos.model';
 import { AuthService } from '../services/auth.service';
 import { UserInterface } from '../models/user.mode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aside-panel',
@@ -29,12 +30,17 @@ export class AsidePanelComponent implements OnInit {
     private firebaseService: FirebaseService
   ) {}
   authService = inject(AuthService);
+  router = inject(Router);
   tagName = '';
   color = '#5c7bbc';
   ngOnInit() {
     this.firebaseService.getTags().subscribe((tags) => {
       this.todosService.setTags(tags);
     });
+  }
+
+  get todos() {
+    return this.todosService.todos;
   }
 
   get user() {
@@ -67,6 +73,22 @@ export class AsidePanelComponent implements OnInit {
   }
 
   onDeleteTag(id: string) {
-    this.firebaseService.deleteTag(id);
+    const todos = this.todos.filter((todo) => todo.tagId === id);
+    console.log(todos);
+    if (todos.length > 0) {
+      if (
+        confirm(`If you remove this tag, ${todos.length} todos will be removed`)
+      ) {
+        this.firebaseService.deleteTodos(todos);
+        this.firebaseService.deleteTag(id);
+      }
+    } else {
+      this.firebaseService.deleteTag(id);
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 }

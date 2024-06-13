@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   user,
 } from '@angular/fire/auth';
 import { updateProfile } from '@firebase/auth';
@@ -35,6 +36,12 @@ export class AuthService {
       email,
       password
     ).then(() => {});
+
+    return from(promise);
+  }
+
+  logout() {
+    const promise = signOut(this.firebaseAuth);
 
     return from(promise);
   }

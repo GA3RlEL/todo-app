@@ -18,6 +18,8 @@ export class LoginComponent {
   router = inject(Router);
   errorService = inject(ErrorService);
 
+  isLoading = false;
+
   registerEmail = '';
   registerPassword = '';
   registerUsername = '';
@@ -30,12 +32,15 @@ export class LoginComponent {
   }
 
   onLogin() {
+    this.isLoading = true;
     this.authService.login(this.loginEmail, this.loginPassword).subscribe({
       next: () => {
         this.router.navigateByUrl('/');
         this.errorService.resetError();
+        this.isLoading = false;
       },
       error: (err) => {
+        this.isLoading = false;
         this.errorService.isError = true;
         this.errorService.errorMessage = { message: err.code };
       },
@@ -43,6 +48,7 @@ export class LoginComponent {
   }
 
   onRegister() {
+    this.isLoading = true;
     this.authService
       .register(
         this.registerEmail,
@@ -51,10 +57,12 @@ export class LoginComponent {
       )
       .subscribe({
         next: () => {
+          this.isLoading = false;
           this.router.navigateByUrl('/');
           this.errorService.resetError();
         },
         error: (err) => {
+          this.isLoading = false;
           this.errorService.isError = true;
           this.errorService.errorMessage = { message: err.code };
         },
