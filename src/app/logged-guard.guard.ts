@@ -14,6 +14,7 @@ export const loggedGuard: CanActivateFn = (route, state) => {
         authService.currnetUserSig.set({
           email: user.email!,
           username: user.displayName!,
+          id: user.uid,
         });
         router.navigateByUrl('/');
         return false;

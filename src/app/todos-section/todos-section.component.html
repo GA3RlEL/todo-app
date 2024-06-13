@@ -59,7 +59,7 @@
 
   <div class="tasks">
     <ul>
-      @for (todo of todos; track todo.id) {
+      @for (todo of todos; track todo.user_id) {
       <li @enterAnimation [class.completed]="todo.done" #todo>
         <p class="dot" [style.background-color]="findTag(todo.tagId)"></p>
         <p class="task-content">{{ todo.content }}</p>
@@ -68,12 +68,12 @@
         </p>
         <button>
           @if(todo.done){
-          <button type="button" (click)="completeTask(todo.id)">
+          <button type="button" (click)="completeTask(todo.user_id!)">
             <img src="/assets/images/checked.svg" alt="done" />
           </button>
 
           }@else {
-          <button type="button" (click)="completeTask(todo.id)">
+          <button type="button" (click)="completeTask(todo.user_id!)">
             <img src="/assets/images/eclipse.svg" alt="eclipse" />
           </button>
           }

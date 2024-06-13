@@ -14,6 +14,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         authService.currnetUserSig.set({
           email: user.email!,
           username: user.displayName!,
+          id: user.uid,
         });
         return true;
       } else {

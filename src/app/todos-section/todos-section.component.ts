@@ -1,10 +1,11 @@
-import { Component, importProvidersFrom } from '@angular/core';
+import { Component, OnInit, importProvidersFrom, inject } from '@angular/core';
 
 import { TodosService } from '../services/todos.service';
 import { Tag, Todo } from '../models/todos.model';
 import { FormsModule } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { DatePipe, TitleCasePipe } from '@angular/common';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-todos-section',
@@ -16,13 +17,19 @@ import { DatePipe, TitleCasePipe } from '@angular/common';
     trigger('enterAnimation', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
-      ])
-    ])
+        animate('300ms ease-in', style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
-export class TodosSectionComponent {
-  constructor(private todosService: TodosService) { }
+export class TodosSectionComponent implements OnInit {
+  constructor(private todosService: TodosService) {}
+  firebaseService = inject(FirebaseService);
+  ngOnInit() {
+    this.firebaseService.getTodos().subscribe((todos) => {
+      this.todosService.setTodos(todos);
+    });
+  }
 
   get tags() {
     return this.todosService.tags;
@@ -36,7 +43,7 @@ export class TodosSectionComponent {
     return this.todosService.selectedTag;
   }
 
-  content = ''
+  content = '';
 
   date = '';
 
@@ -46,35 +53,32 @@ export class TodosSectionComponent {
     dateInput.showPicker();
   }
 
-
   setContent() {
     this.todosService.setContent(this.content);
   }
 
-  completeTask(id: number) {
+  completeTask(id: string) {
     this.todosService.updateTodoDone(id);
   }
 
-
   setDate() {
-    this.todosService.setDate(new Date(this.date))
+    this.todosService.setDate(new Date(this.date));
   }
 
   onSubmit() {
-
-    this.setContent()
+    this.setContent();
     this.setDate();
 
-    const result = this.todosService.createTodo()
+    const result = this.todosService.createTodo();
     if (result) {
-      this.content = ''
-      this.date = ''
+      this.content = '';
+      this.date = '';
     }
   }
 
   findTag(tagId: string) {
-    const tag: Tag[] = this.tags.filter(tag => tag.id === tagId)
-    return tag[0].color
+    const tag: Tag[] = this.tags.filter((tag) => tag.id === tagId);
+    return tag[0].color;
   }
 
   selectTag(tag: Tag) {
@@ -82,7 +86,6 @@ export class TodosSectionComponent {
   }
 
   showSelectTag() {
-    this.todosService.isSelectTag = true
+    this.todosService.isSelectTag = true;
   }
-
 }

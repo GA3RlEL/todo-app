@@ -1,7 +1,7 @@
 export interface Tag {
-  id:string,
-  name: string,
-  color: string
+  id: string;
+  name: string;
+  color: string;
 }
 
 export interface AddTag {
@@ -10,14 +10,9 @@ export interface AddTag {
 }
 
 export interface Todo {
-  id: number;
   tagId: string;
   content: string;
   done: boolean;
-  date: Date;
-}
-
-export interface Time {
-  hours: number;
-  minutes: number
+  date: any;
+  user_id: string | null;
 }

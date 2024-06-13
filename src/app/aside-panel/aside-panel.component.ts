@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodosService } from '../services/todos.service';
 import { TitleCasePipe } from '@angular/common';
@@ -23,7 +23,7 @@ import { UserInterface } from '../models/user.mode';
     ]),
   ],
 })
-export class AsidePanelComponent {
+export class AsidePanelComponent implements OnInit {
   constructor(
     private todosService: TodosService,
     private firebaseService: FirebaseService
@@ -32,9 +32,6 @@ export class AsidePanelComponent {
   tagName = '';
   color = '#5c7bbc';
   ngOnInit() {
-    this.firebaseService.getTodos().subscribe((todos) => {
-      console.log(todos);
-    });
     this.firebaseService.getTags().subscribe((tags) => {
       this.todosService.setTags(tags);
     });

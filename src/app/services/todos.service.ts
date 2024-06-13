@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { AddTag, Tag, Time, Todo } from '../models/todos.model';
+import { Tag, Todo } from '../models/todos.model';
 import { Error } from '../models/error.model';
 import { FirebaseService } from './firebase.service';
 
@@ -24,13 +24,17 @@ export class TodosService {
     this.tags = tags;
   }
 
+  setTodos(todos: any) {
+    this.todos = todos;
+  }
+
   addTag(tag: Tag) {
     this.tags.push(tag);
   }
 
-  updateTodoDone(id: number) {
+  updateTodoDone(id: string) {
     this.todos = this.todos.map((todo) => {
-      if (todo.id === id) {
+      if (todo.user_id === id) {
         todo.done = !todo.done;
         return todo;
       } else {
@@ -56,24 +60,15 @@ export class TodosService {
       this.isError = true;
       this.errorMessage = { message: 'Tag' };
       return false;
-    }
-    // else if (!this.time) {
-    //   this.isError = true;
-    //   this.errorMessage = { message: "Time" }
-    //   return false
-    // }
-    // else if (!this.selectedDate) {
-    //   this.isError = true;
-    //   this.errorMessage = { message: 'Date' }
-    //   return false
-    // }
-    else {
-      this.todos.push({
+    } else {
+      console.log(this.selectedDate?.toISOString());
+      console.log(this.selectedDate?.toDateString());
+      this.firebaseService.addTodo({
         content: this.content,
-        date: this.selectedDate || new Date(),
+        date: this.selectedDate?.toISOString() || new Date().toISOString(),
         done: false,
-        id: this.todos.length + 1,
         tagId: this.selectedTag.id,
+        user_id: null,
       });
 
       this.resetTodo();
