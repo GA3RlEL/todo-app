@@ -1,0 +1,67 @@
+h3 {
+  font-size: 2rem;
+}
+
+.outline {
+  height: 100dvh;
+  width: 100vw;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  left: 0;
+  top: 0;
+}
+
+.settings {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.settings-content {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.settings-content p {
+  font-size: 1.5rem;
+}
+
+.settings-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings-header button {
+  border: none;
+  background-color: transparent;
+  color: #274c77;
+  font-weight: bold;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.profile-picture {
+  border-radius: 50%;
+}
+
+img {
+  width: 6rem;
+  height: 6rem;
+}

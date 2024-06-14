@@ -1,0 +1,56 @@
+@if (isVisible) {
+<div class="outline" (click)="close()" @inAndOut></div>
+
+<div class="settings" @inAndOut>
+  <h1>Settings</h1>
+  <div class="settings-section">
+    <div class="settings-header">
+      <h3>Profile</h3>
+      @if(!isEditProfile){
+      <button (click)="onEdit()" type="button">Edit</button>
+      }
+    </div>
+    <div class="settings-content">
+      <div>
+        <img class="profile-picture" [src]="isPhoto" alt="Profile picture" />
+      </div>
+
+      <div>
+        @if(!isEditProfile){
+        <p>{{ user?.username }}</p>
+        <p>{{ user?.email }}</p>
+        }@else {
+        <!-- <form>
+          <label for="username">Username</label>
+          <input
+            [(ngModel)]="_editProfile"
+            type="text"
+            name="username"
+            id="username"
+          />
+          <label for="email">Email</label>
+          <input
+            disabled
+            [value]="user?.email"
+            type="text"
+            name="email"
+            id="email"
+          />
+          <div>
+            <button>Save</button>
+            <button>Cancel</button>
+          </div>
+        </form> -->
+        }
+      </div>
+      <input
+        (change)="onFileChange($event)"
+        type="file"
+        name="photo"
+        id="photo"
+      />
+      <button (click)="onPhotoUpload()" type="button">submit</button>
+    </div>
+  </div>
+</div>
+}

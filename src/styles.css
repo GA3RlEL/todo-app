@@ -35,7 +35,8 @@ app-aside-panel {
   z-index: 2;
 }
 
-app-select-tag {
+app-select-tag,
+app-settings {
   position: absolute;
   z-index: 3;
 }

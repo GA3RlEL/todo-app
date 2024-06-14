@@ -7,15 +7,25 @@ import {
   deleteDoc,
   doc,
   query,
+  setDoc,
   where,
 } from '@angular/fire/firestore';
 import { AddTag, Todo } from '../models/todos.model';
 import { AuthService } from './auth.service';
+import {
+  Storage,
+  uploadBytesResumable,
+  ref,
+  getDownloadURL,
+} from '@angular/fire/storage';
+import { from } from 'rxjs';
+import { TodosService } from './todos.service';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   firestore = inject(Firestore);
   authService = inject(AuthService);
+  storage = inject(Storage);
   todosCollection = collection(this.firestore, 'todos');
   tagsCollection = collection(this.firestore, 'tags');
 
@@ -63,5 +73,34 @@ export class FirebaseService {
     todos.map((todo) => {
       deleteDoc(doc(this.firestore, 'todos/' + todo.id));
     });
+  }
+
+  updateDone(todo: any) {
+    setDoc(doc(this.firestore, 'todos/' + todo.id), {
+      ...todo,
+      done: !todo.done,
+    });
+  }
+
+  uploadPhoto(photo: File) {
+    const storageRef = ref(this.storage, this.authService.currnetUserSig()?.id);
+    const promise = uploadBytesResumable(storageRef, photo).then(
+      (data) => data
+    );
+
+    return from(promise);
+  }
+
+  getPhoto() {
+    const storageRef = ref(this.storage, this.authService.currnetUserSig()?.id);
+    const promise = getDownloadURL(storageRef)
+      .then((url) => {
+        return url;
+      })
+      .catch(() => {
+        return '/assets/images/no_profile.jpg';
+      });
+
+    return promise;
   }
 }

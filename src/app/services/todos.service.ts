@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Tag, Todo } from '../models/todos.model';
 import { Error } from '../models/error.model';
 import { FirebaseService } from './firebase.service';
+import { map, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TodosService {
@@ -19,6 +20,8 @@ export class TodosService {
   errorMessage?: Error;
 
   isSelectTag: boolean = false;
+  isSettings: boolean = true;
+  isPhoto!: string;
 
   setTags(tags: any) {
     this.tags = tags;
@@ -30,6 +33,14 @@ export class TodosService {
 
   addTag(tag: Tag) {
     this.tags.push(tag);
+  }
+
+  async getPhoto() {
+    try {
+      this.isPhoto = await this.firebaseService.getPhoto();
+    } catch (error) {
+      this.isPhoto = '/assets/images/no_profile.jpg';
+    }
   }
 
   updateTodoDone(id: string) {

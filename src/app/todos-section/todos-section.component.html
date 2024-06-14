@@ -68,12 +68,12 @@
         </p>
         <button>
           @if(todo.done){
-          <button type="button" (click)="completeTask(todo.user_id!)">
+          <button type="button" (click)="completeTask(todo)">
             <img src="/assets/images/checked.svg" alt="done" />
           </button>
 
           }@else {
-          <button type="button" (click)="completeTask(todo.user_id!)">
+          <button type="button" (click)="completeTask(todo)">
             <img src="/assets/images/eclipse.svg" alt="eclipse" />
           </button>
           }

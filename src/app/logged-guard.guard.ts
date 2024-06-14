@@ -15,6 +15,7 @@ export const loggedGuard: CanActivateFn = (route, state) => {
           email: user.email!,
           username: user.displayName!,
           id: user.uid,
+          photoURL: user.photoURL!,
         });
         router.navigateByUrl('/');
         return false;

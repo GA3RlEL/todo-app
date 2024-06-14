@@ -57,8 +57,8 @@ export class TodosSectionComponent implements OnInit {
     this.todosService.setContent(this.content);
   }
 
-  completeTask(id: string) {
-    this.todosService.updateTodoDone(id);
+  completeTask(todo: any) {
+    this.firebaseService.updateDone(todo);
   }
 
   setDate() {

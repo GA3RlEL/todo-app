@@ -7,7 +7,7 @@ import {
   user,
 } from '@angular/fire/auth';
 import { updateProfile } from '@firebase/auth';
-import { Observable, from } from 'rxjs';
+import { Observable, from, map, take } from 'rxjs';
 import { UserInterface } from '../models/user.mode';
 
 @Injectable({ providedIn: 'root' })

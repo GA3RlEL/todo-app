@@ -4,6 +4,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { Routes, provideRouter } from '@angular/router';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from '../environments/environment.development';
@@ -22,5 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
   ],
 };

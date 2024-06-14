@@ -1,9 +1,9 @@
 <aside [class.active]="isMobile">
   <div class="user">
-    <img src="/assets/images/face.jpg" alt="face" />
+    <img class="profile-photo" [src]="isPhoto" alt="face" />
     <div class="user-info">
       <p>Do it!</p>
-      <h3>{{ user?.username | titlecase }}</h3>
+      <h3>{{ user?.username }}</h3>
     </div>
     <button (click)="showMobile()" class="btn-mobile">
       <img src="/assets/images/chevron-up.svg" alt="up" />
@@ -60,7 +60,7 @@
         </ul>
       </div>
     </div>
-    <button class="item menu-btn">
+    <button (click)="onShowSettings()" class="item menu-btn">
       <img src="/assets/images/settings.svg" alt="settings" />
       <h4>Settings</h4>
     </button>

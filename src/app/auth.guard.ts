@@ -15,6 +15,7 @@ export const authGuard: CanActivateFn = (route, state) => {
           email: user.email!,
           username: user.displayName!,
           id: user.uid,
+          photoURL: user.photoURL!,
         });
         return true;
       } else {

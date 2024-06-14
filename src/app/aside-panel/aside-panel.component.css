@@ -162,6 +162,10 @@ input[type="color"]::-webkit-color-swatch {
   display: none;
 }
 
+.profile-photo {
+  object-fit: cover;
+}
+
 @media (max-width: 640px) {
   hr,
   .user-info {

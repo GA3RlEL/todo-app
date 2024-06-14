@@ -33,10 +33,16 @@ export class AsidePanelComponent implements OnInit {
   router = inject(Router);
   tagName = '';
   color = '#5c7bbc';
+
   ngOnInit() {
     this.firebaseService.getTags().subscribe((tags) => {
       this.todosService.setTags(tags);
     });
+    this.todosService.getPhoto();
+  }
+
+  get isPhoto() {
+    return this.todosService.isPhoto;
   }
 
   get todos() {
@@ -74,7 +80,6 @@ export class AsidePanelComponent implements OnInit {
 
   onDeleteTag(id: string) {
     const todos = this.todos.filter((todo) => todo.tagId === id);
-    console.log(todos);
     if (todos.length > 0) {
       if (
         confirm(`If you remove this tag, ${todos.length} todos will be removed`)
@@ -90,5 +95,9 @@ export class AsidePanelComponent implements OnInit {
   logout() {
     this.authService.logout();
     window.location.reload();
+  }
+
+  onShowSettings() {
+    this.todosService.isSettings = true;
   }
 }
