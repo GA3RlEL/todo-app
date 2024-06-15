@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
   file?: File;
   previewFile?: string | undefined;
 
-  isEditProfile = true;
+  isEditProfile = false;
   isLoading = false;
   isUpdating = false;
 
