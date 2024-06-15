@@ -7,9 +7,10 @@ import { Routes, provideRouter } from '@angular/router';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { environment } from '../environments/environment.development';
+
 import { authGuard } from './auth.guard';
 import { loggedGuard } from './logged-guard.guard';
+import { environment } from '../environments/environment.development';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
