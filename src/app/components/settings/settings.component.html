@@ -11,8 +11,35 @@
       }
     </div>
     <div class="settings-content">
-      <div>
-        <img class="profile-picture" [src]="isPhoto" alt="Profile picture" />
+      <div class="image-section">
+        <div class="image-container">
+          <img
+            class="profile-picture"
+            [src]="previewFile != undefined ? previewFile : isPhoto"
+            alt="Profile picture"
+          />
+          <input
+            (change)="onFileChange($event)"
+            type="file"
+            name="photo"
+            id="photo"
+          />
+          @if(isLoading){
+          <div class="loading">
+            <p>Loading...</p>
+          </div>
+          }
+        </div>
+        @if(previewFile){
+        <div class="buttons">
+          <button class="submit" (click)="onPhotoUpload()" type="button">
+            Submit
+          </button>
+          <button class="cancel" (click)="cancel()" type="button">
+            Cancel
+          </button>
+        </div>
+        }
       </div>
 
       <div>
@@ -20,36 +47,38 @@
         <p>{{ user?.username }}</p>
         <p>{{ user?.email }}</p>
         }@else {
-        <!-- <form>
-          <label for="username">Username</label>
-          <input
-            [(ngModel)]="_editProfile"
-            type="text"
-            name="username"
-            id="username"
-          />
-          <label for="email">Email</label>
-          <input
-            disabled
-            [value]="user?.email"
-            type="text"
-            name="email"
-            id="email"
-          />
-          <div>
-            <button>Save</button>
-            <button>Cancel</button>
+        <form (ngSubmit)="updateProfile()">
+          <div class="form-module">
+            <label for="username">Username</label>
+            <input
+              [(ngModel)]="username"
+              type="text"
+              name="username"
+              id="username"
+              required
+            />
           </div>
-        </form> -->
+          <div class="form-module">
+            <label for="email">Email</label>
+            <input
+              disabled
+              [value]="user?.email"
+              type="text"
+              name="email"
+              id="email"
+            />
+          </div>
+          <div class="buttons">
+            <button type="submit" class="submit">
+              {{ isUpdating ? "Saving..." : "Save" }}
+            </button>
+            <button type="button" (click)="cancelEdit()" class="cancel">
+              Cancel
+            </button>
+          </div>
+        </form>
         }
       </div>
-      <input
-        (change)="onFileChange($event)"
-        type="file"
-        name="photo"
-        id="photo"
-      />
-      <button (click)="onPhotoUpload()" type="button">submit</button>
     </div>
   </div>
 </div>

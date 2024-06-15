@@ -1,6 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, inject } from '@angular/core';
-import { TodosService } from '../../services/todos.service';
 import { ErrorService } from '../../services/error.service';
 
 @Component({

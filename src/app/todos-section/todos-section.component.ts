@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { FirebaseService } from '../services/firebase.service';
+import { ErrorService } from '../services/error.service';
 
 @Component({
   selector: 'app-todos-section',
@@ -25,6 +26,7 @@ import { FirebaseService } from '../services/firebase.service';
 export class TodosSectionComponent implements OnInit {
   constructor(private todosService: TodosService) {}
   firebaseService = inject(FirebaseService);
+  errorService = inject(ErrorService);
   ngOnInit() {
     this.firebaseService.getTodos().subscribe((todos) => {
       this.todosService.setTodos(todos);
@@ -86,6 +88,14 @@ export class TodosSectionComponent implements OnInit {
   }
 
   showSelectTag() {
-    this.todosService.isSelectTag = true;
+    if (this.tags.length === 0) {
+      this.errorService.isError = true;
+      this.errorService.errorMessage = { message: 'Create atleast one tag' };
+    } else {
+      if (this.errorService.isError) {
+        this.errorService.resetError();
+      }
+      this.todosService.isSelectTag = true;
+    }
   }
 }

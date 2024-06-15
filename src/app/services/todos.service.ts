@@ -20,7 +20,7 @@ export class TodosService {
   errorMessage?: Error;
 
   isSelectTag: boolean = false;
-  isSettings: boolean = true;
+  isSettings: boolean = false;
   isPhoto!: string;
 
   setTags(tags: any) {
@@ -72,8 +72,8 @@ export class TodosService {
       this.errorMessage = { message: 'Tag' };
       return false;
     } else {
-      console.log(this.selectedDate?.toISOString());
-      console.log(this.selectedDate?.toDateString());
+      // console.log(this.selectedDate?.toISOString());
+      // console.log(this.selectedDate?.toDateString());
       this.firebaseService.addTodo({
         content: this.content,
         date: this.selectedDate?.toISOString() || new Date().toISOString(),

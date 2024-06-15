@@ -69,7 +69,7 @@ export class FirebaseService {
   }
 
   deleteTodos(todos: any[]) {
-    console.log(todos);
+    // console.log(todos);
     todos.map((todo) => {
       deleteDoc(doc(this.firestore, 'todos/' + todo.id));
     });

@@ -8,7 +8,9 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
   color: white;
+  width: 25rem;
 }
 h1 {
   font-size: medium;

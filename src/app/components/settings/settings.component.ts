@@ -39,8 +39,13 @@ export class SettingsComponent implements OnInit {
   authService = inject(AuthService);
   firebaseService = inject(FirebaseService);
   file?: File;
+  previewFile?: string | undefined;
 
-  isEditProfile = false;
+  isEditProfile = true;
+  isLoading = false;
+  isUpdating = false;
+
+  username = this.user?.username;
 
   get isPhoto() {
     return this.todosService.isPhoto;
@@ -59,14 +64,17 @@ export class SettingsComponent implements OnInit {
   }
 
   onEdit() {
-    // this.isEditProfile = true;
+    this.isEditProfile = true;
   }
 
   onPhotoUpload() {
     if (this.file) {
+      this.isLoading = true;
       this.firebaseService.uploadPhoto(this.file).subscribe(() => {
         this.todosService.getPhoto();
+        this.isLoading = false;
       });
+      this.previewFile = undefined;
     }
   }
 
@@ -74,6 +82,25 @@ export class SettingsComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       this.file = file;
+      this.previewFile = (window.URL || window.webkitURL).createObjectURL(file);
+    }
+  }
+
+  cancel() {
+    this.previewFile = undefined;
+  }
+
+  cancelEdit() {
+    this.isEditProfile = false;
+  }
+
+  updateProfile() {
+    this.isUpdating = true;
+    if (this.username) {
+      this.authService.updateProfile(this.username).then(() => {
+        this.isUpdating = false;
+        this.isEditProfile = false;
+      });
     }
   }
 }
