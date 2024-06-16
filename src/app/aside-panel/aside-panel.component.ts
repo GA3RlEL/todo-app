@@ -53,6 +53,8 @@ export class AsidePanelComponent implements OnInit {
     return this.authService.currnetUserSig();
   }
 
+  length = this.tags.filter((tag) => tag.name === this.user?.id).length;
+
   isEdit = false;
   isMobile = false;
 
